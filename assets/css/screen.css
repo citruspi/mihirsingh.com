@@ -6,8 +6,8 @@ html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
+small, strike, sub, sup, tt, var,
+b, u, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
@@ -242,7 +242,10 @@ article pre{
 }
 
 article hr{
-	margin-bottom:30px;
+	margin-bottom: 30px;
+	height: 50%;
+	color: rgb(55, 57, 55);
+	background-color: rgb(55, 57, 55);
 }
 
 .meta{
