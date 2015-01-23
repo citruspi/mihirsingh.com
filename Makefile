@@ -1,15 +1,23 @@
-all: clean index
+all: clean build
 
 clean:
 
-	rm index.html
+	rm -r dist
+	rm -f src/index.html
 
-index:
+build:
 
-	./node_modules/jade/bin/jade.js index.jade
+	mkdir dist
 
-server: index
+	./node_modules/jade/bin/jade.js src/index.jade
+	mv src/index.html dist/index.html
 
-	python -m SimpleHTTPServer
+	mkdir dist/assets
+	mkdir dist/assets/css
+	sass src/assets/css/screen.sass dist/assets/css/screen.css
 
-PHONY: index clean server
+server: clean build
+
+	cd dist && python -m SimpleHTTPServer
+
+PHONY: build clean server
