@@ -1,0 +1,24 @@
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install nodejs
+  - sudo apt-get install npm
+  - sudo apt-get install ruby-full
+  - sudo apt-get install rubygems
+
+install:
+  - npm install jade
+  - sudo gem install sass
+
+script: make release
+
+deploy:
+  provider: s3
+  access_key_id: AKIAIKAOQMWIKVZMP4BQ
+  secret_access_key:
+    secure: bq6uMPVbDjQrepMrxTfJHHvMJr9fZVLkTjVnVf6w/JfxFzYof7o8POemTkfIfqHt+/E38YnPnP4YVUO8iEdP8yo1AfDGi4PtzEC4LUyP/p9gMFStnhy8Alp3t+xu1gF5SQOVSIuVT21RDyH18qE4gAEiVKAsnx62DEbeHPi2+Ec=
+  bucket: com.mihirsingh.www
+  skip_cleanup: true
+  local-dir: builds
+  acl: public_read
+  on:
+    repo: citruspi/mihirsingh.com
