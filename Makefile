@@ -5,7 +5,7 @@ ifeq ($(strip $(BRANCH)),)
 	BRANCH:=$(shell git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 endif
 
-all: clean build
+all: clean dist
 
 clean:
 
@@ -13,7 +13,7 @@ clean:
 	rm -rf release
 	rm -f src/index.html
 
-build:
+dist:
 
 	mkdir dist
 
@@ -24,11 +24,11 @@ build:
 	mkdir dist/assets/css
 	sass src/assets/css/screen.sass dist/assets/css/screen.css
 
-server: clean build
+server: clean dist
 
 	cd dist && python -m SimpleHTTPServer
 
-release: clean build
+release: clean dist
 
 	mkdir release
 	zip -r dist dist
@@ -38,4 +38,4 @@ release: clean build
 
 	rm dist.zip
 
-PHONY: build release clean server
+PHONY: dist release clean server
