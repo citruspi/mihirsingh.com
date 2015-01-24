@@ -1,5 +1,9 @@
 COMMIT:=$(shell git log -1 --pretty=format:'%H')
-BRANCH:=$(shell git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+ifeq ($(TRAVIS), "true")
+	BRANCH:=$(TRAVIS_BRANCH)
+else
+	BRANCH:=$(shell git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+endif
 
 all: clean build
 
