@@ -9,8 +9,9 @@ install:
   - gem install sass
 
 language: ruby
-script: make release
+script: return 0
 
+before_deploy: make release
 deploy:
   provider: s3
   access_key_id: AKIAIKAOQMWIKVZMP4BQ
