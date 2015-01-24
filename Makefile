@@ -1,8 +1,12 @@
+COMMIT:=$(shell git log -1 --pretty=format:'%H')
+BRANCH:=$(shell git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+
 all: clean build
 
 clean:
 
-	rm -r dist
+	rm -rf dist
+	rm -rf release
 	rm -f src/index.html
 
 build:
@@ -20,4 +24,14 @@ server: clean build
 
 	cd dist && python -m SimpleHTTPServer
 
-PHONY: build clean server
+release: clean build
+
+	mkdir release
+	zip -r dist dist
+
+	cp dist.zip release/$(COMMIT).zip
+	cp dist.zip release/$(BRANCH).zip
+
+	rm dist.zip
+
+PHONY: build release clean server
