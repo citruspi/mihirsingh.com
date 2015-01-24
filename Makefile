@@ -1,7 +1,7 @@
 COMMIT:=$(shell git log -1 --pretty=format:'%H')
-ifeq ($(TRAVIS), "true")
-	BRANCH:=$(TRAVIS_BRANCH)
-else
+BRANCH:=$(TRAVIS_BRANCH)
+
+ifeq ($(strip $(BRANCH)),)
 	BRANCH:=$(shell git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 endif
 
