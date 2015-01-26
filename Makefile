@@ -31,7 +31,7 @@ server: clean dist
 release: clean dist
 
 	mkdir release
-	zip -r dist dist
+	cd dist && zip -r ../dist.zip .
 
 	cp dist.zip release/$(COMMIT).zip
 	cp dist.zip release/$(BRANCH).zip
